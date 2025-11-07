@@ -23,7 +23,7 @@
     </properties>
 
     <dependencies>
-        <!-- Web (REST API ) -->
+        <!-- Web (REST API) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -47,10 +47,11 @@
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
 
-        <!-- PostgreSQL JDBC Driver -->
+        <!-- Oracle JDBC Driver -->
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- JDBC -->
