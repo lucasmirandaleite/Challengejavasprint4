@@ -9,15 +9,17 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder; // <-- NOVO IMPORT
+import org.springframework.security.crypto.password.PasswordEncoder; // <-- NOVO IMPORT
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http ) throws Exception {
         http
-            .authorizeRequests()
+            .authorizeRequests( )
                 .antMatchers("/login", "/css/**", "/js/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
@@ -32,7 +34,7 @@ public class SecurityConfig {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout")
                 .permitAll();
-        return http.build();
+        return http.build( );
     }
 
    	    @Bean
@@ -44,5 +46,9 @@ public class SecurityConfig {
 	        return users;
 	    }
 
+    // NOVO MÉTODO: Define o codificador de senha como NoOp (sem criptografia)
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
 }
-
