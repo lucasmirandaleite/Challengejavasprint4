@@ -1,12 +1,12 @@
 CREATE TABLE filial (
-    id INT AUTO_INCREMENT,
+    id SERIAL,
     nome VARCHAR(255) NOT NULL,
     endereco VARCHAR(255),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE moto (
-    id INT AUTO_INCREMENT,
+    id SERIAL,
     marca VARCHAR(255) NOT NULL,
     modelo VARCHAR(255) NOT NULL,
     ano INT,
@@ -16,7 +16,7 @@ CREATE TABLE moto (
 );
 
 CREATE TABLE registro_rfid (
-    id INT AUTO_INCREMENT,
+    id SERIAL,
     codigo_rfid VARCHAR(255) NOT NULL UNIQUE,
     data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     moto_id INT,
