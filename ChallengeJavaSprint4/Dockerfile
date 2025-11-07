@@ -6,10 +6,10 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Stage 2: Create the final image
-FROM openjdk:11-jre-slim
+FROM openjdk:11-jre
 WORKDIR /app
-# Copia o JAR do estágio de build
-COPY --from=build /app/target/*.jar app.jar
+# Copia o JAR do estágio de build (CORREÇÃO FINAL AQUI)
+COPY --from=build /app/target/rfid-tracking-1.0.0.jar app.jar
 # Expõe a porta padrão do Spring Boot
 EXPOSE 8080
 # Comando para rodar a aplicação
