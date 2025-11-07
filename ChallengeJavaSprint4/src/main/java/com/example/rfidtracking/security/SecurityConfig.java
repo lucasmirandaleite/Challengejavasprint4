@@ -35,12 +35,14 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService(DataSource dataSource) {
-        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-        // If you want to add default users programmatically, you can do it here
-        // but Flyway migrations will handle initial user creation.
-        return users;
-    }
+   	    @Bean
+	    public UserDetailsService userDetailsService(DataSource dataSource) {
+	        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+	        // Configura o JdbcUserDetailsManager para usar a tabela 'usuario' e as colunas corretas
+	        users.setUsersByUsernameQuery("select username, password, true from usuario where username = ?");
+	        users.setAuthoritiesByUsernameQuery("select username, role from usuario where username = ?");
+	        return users;
+	    }
+
 }
 
