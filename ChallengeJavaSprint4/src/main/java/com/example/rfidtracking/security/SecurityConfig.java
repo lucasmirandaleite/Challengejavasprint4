@@ -9,7 +9,7 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder; // <-- NOVO IMPORT
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder; // <-- NOVO IMPORT
 
 @Configuration
@@ -49,6 +49,6 @@ public class SecurityConfig {
     // NOVO MÉTODO: Define o codificador de senha como NoOp (sem criptografia)
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 }
